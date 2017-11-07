@@ -18,7 +18,7 @@ public class Const {
 
     public static final String BASE_IMG_URL1 = "http://tnfs.tngou.net/image"; //_180x120
 
-    public static final String BASE_IMG_URL2 = "http://tnfs.tngou.net/img";
+    public static final String BASE_IMG_URL2 = "";
 
     public static final int PAGE_SIZE = 30;
 }

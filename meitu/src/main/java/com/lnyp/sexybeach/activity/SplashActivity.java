@@ -14,7 +14,7 @@ public class SplashActivity extends BaseActivity {
     /**
      * 最短启动时间
      */
-    private static final int SHOW_TIME_MIN = 2000;
+    private static final int SHOW_TIME_MIN = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

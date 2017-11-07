@@ -73,10 +73,10 @@ public class BeautyDetailActivity extends BaseActivity {
         BeautySimple beautySimple = (BeautySimple) getIntent().getSerializableExtra("beautySimple");
 
         rotateLoading.start();
-        getBeautyDetail(beautySimple.getId());
+//        getBeautyDetail(beautySimple.getId());
     }
 
-    private void getBeautyDetail(int id) {
+   /* private void getBeautyDetail(int id) {
 
 
         OkHttpClient client = new OkHttpClient();
@@ -119,7 +119,7 @@ public class BeautyDetailActivity extends BaseActivity {
             }
         });
 
-    }
+    }*/
 
     /**
      * 更新页面UI
@@ -169,7 +169,7 @@ public class BeautyDetailActivity extends BaseActivity {
             case R.id.imgShare:
 
                 WXWebpageObject webpage = new WXWebpageObject();
-                webpage.webpageUrl = "http://www.tngou.net/tnfs/show/" + beautyDetail.getId();
+                webpage.webpageUrl = beautyDetail.getImg();
                 WXMediaMessage msg = new WXMediaMessage(webpage);
                 msg.title = beautyDetail.getTitle();
                 msg.description = beautyDetail.getTitle();

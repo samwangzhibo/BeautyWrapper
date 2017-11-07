@@ -14,7 +14,7 @@ public class BeautyDetail {
      * rcount : 0
      * size : 18
      * time : 1450406403000
-     * title : 大胸美女模特性感内衣私房写真
+     * title : asdasd
      */
 
     private int count;

@@ -56,13 +56,12 @@ public class BeautyListAdapter extends RecyclerView.Adapter {
             Glide.with(mContext).
                     load(imgUrl)
                     .asBitmap()
-                    .override(300, 600)
+//                    .override(300, 600)
                     .skipMemoryCache(true)
                     .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                     .into(viewHolder.imgBeautyGril);
 
             viewHolder.textClasifyTitle.setText(beautySimple.getTitle());
-
 
             viewHolder.itemView.setTag(position);
             viewHolder.itemView.setOnClickListener(beautySimplesItemOnClick);

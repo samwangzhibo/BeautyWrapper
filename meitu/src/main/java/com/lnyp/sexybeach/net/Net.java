@@ -2,6 +2,7 @@ package com.lnyp.sexybeach.net;
 
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -23,7 +24,7 @@ import okhttp3.Response;
 
 public class Net {
 
-    public static <T> void post(String url, final Class<T> tClass, final INetCallBack<T> callBack){
+    public static <T> void post(final Handler mHandler, final String url, final Class<T> tClass, final INetCallBack<T> callBack){
         OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
                 .url(url)
@@ -38,7 +39,8 @@ public class Net {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String result = response.body().string();
-                doCallBack(null, result, tClass, callBack);
+                Log.e("wzb", url +  result);
+                doCallBack(mHandler, result, tClass, callBack);
             }
         });
     }
@@ -81,15 +83,17 @@ public class Net {
             }
         }
     }
-    public static <T> void getData(final Handler mHandler, final String url, final Class<T> tClass, final INetCallBack<T> callBack){
+    public static <T> void getData(final Handler mHandler, final String url, final Class<T> tClass, final INetCallBack<T> callBack, final String... params){
         new Thread(){
             //在新线程中发送网络请求
             public void run() {
-                final String res=new ShowApiRequest(url, Constant.APP_ID, Constant.SIGN_KEY)
-                        .addTextPara("type", "1003")
-                        .addTextPara("page", "1")
-                        .post();
-
+                ShowApiRequest showApiRequest = new ShowApiRequest(url, Constant.APP_ID, Constant.SIGN_KEY);
+                for (int i = 0; i < params.length/2; i++){
+                    showApiRequest
+                            .addTextPara(params[2 * i], params[2 * i + 1]);
+                }
+                final String res= showApiRequest.post();
+                Log.e("wzb", url + res);
                 //把返回内容通过handler对象更新到界面
                 doCallBack(mHandler, res, tClass, callBack);
             }
