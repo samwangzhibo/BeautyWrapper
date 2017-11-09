@@ -1,11 +1,13 @@
 package com.lnyp.sexybeach.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +25,7 @@ import com.lnyp.sexybeach.entry.BeautyDetail;
 import com.lnyp.sexybeach.entry.BeautySimple;
 import com.lnyp.sexybeach.util.FastJsonUtil;
 import com.lnyp.sexybeach.util.Util;
+import com.lnyp.sexybeach.widget.ShowMaxImageView;
 import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
@@ -38,6 +41,7 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 /**
  * 美女图片详情
@@ -51,7 +55,10 @@ public class BeautyDetailActivity extends BaseActivity {
     public ScrollView scrollContent;
 
     @Bind(R.id.imgCover)
-    public ImageView imgCover;
+    public ShowMaxImageView imgCover;
+
+    @Bind(R.id.layoutTitleBar)
+    public RelativeLayout titleBar;
 
     @Bind(R.id.textCount)
     public TextView textCount;
@@ -59,7 +66,13 @@ public class BeautyDetailActivity extends BaseActivity {
     @Bind(R.id.textTitle)
     public TextView textTitle;
 
-    private BeautyDetail beautyDetail;
+    BeautySimple beautySimple;
+
+    public static Intent createIntent(Context context, BeautySimple beautySimple){
+        Intent intent = new Intent(context, BeautyDetailActivity.class);
+        intent.putExtra("beautySimple", beautySimple);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,13 +80,23 @@ public class BeautyDetailActivity extends BaseActivity {
         setContentView(R.layout.activity_beauty_detail);
 
         ButterKnife.bind(this);
-
+        initListenr();
         scrollContent.setVisibility(View.INVISIBLE);
 
-        BeautySimple beautySimple = (BeautySimple) getIntent().getSerializableExtra("beautySimple");
+        beautySimple = (BeautySimple) getIntent().getSerializableExtra("beautySimple");
 
         rotateLoading.start();
+        updateData();
 //        getBeautyDetail(beautySimple.getId());
+    }
+
+    private void initListenr() {
+        imgCover.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
+            @Override
+            public void onPhotoTap(View view, float x, float y) {
+                toggleVisible(titleBar);
+            }
+        });
     }
 
    /* private void getBeautyDetail(int id) {
@@ -126,11 +149,11 @@ public class BeautyDetailActivity extends BaseActivity {
      */
     private void updateData() {
 
-        String imgUrl = Const.BASE_IMG_URL2 + beautyDetail.getImg();
+        String imgUrl = Const.BASE_IMG_URL2 + beautySimple.getPic().big;
 
         Glide.with(this)
                 .load(imgUrl)
-                .override(720, 1280)
+//                .override(720, 1280)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .skipMemoryCache(true)
                 .into(new GlideDrawableImageViewTarget(imgCover) {
@@ -139,9 +162,9 @@ public class BeautyDetailActivity extends BaseActivity {
                         super.onResourceReady(drawable, anim);
                         //在这里添加一些图片加载完成的操作
 
-                        textCount.setText("共有" + beautyDetail.getSize() + "张");
+//                        textCount.setText("共有" + beautyDetail.getSize() + "张");
 
-                        textTitle.setText(beautyDetail.getTitle());
+                        textTitle.setText(beautySimple.getTitle());
 
                         scrollContent.setVisibility(View.VISIBLE);
 
@@ -151,24 +174,26 @@ public class BeautyDetailActivity extends BaseActivity {
 
     }
 
+    private void toggleVisible(View view){
+        view.setVisibility(view.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
+    }
+
     @OnClick({R.id.layoutImgs, R.id.imgBack, R.id.imgShare})
     public void onClick(View view) {
-
         switch (view.getId()) {
             case R.id.layoutImgs:
-                if (beautyDetail != null) {
+              /*  if (beautyDetail != null) {
                     Intent intent = new Intent(this, ImageBrowseActivity.class);
                     intent.putParcelableArrayListExtra("imgs", beautyDetail.getList());
                     startActivity(intent);
-                }
-
+                }*/
                 break;
             case R.id.imgBack:
                 finish();
                 break;
             case R.id.imgShare:
 
-                WXWebpageObject webpage = new WXWebpageObject();
+               /* WXWebpageObject webpage = new WXWebpageObject();
                 webpage.webpageUrl = beautyDetail.getImg();
                 WXMediaMessage msg = new WXMediaMessage(webpage);
                 msg.title = beautyDetail.getTitle();
@@ -179,8 +204,7 @@ public class BeautyDetailActivity extends BaseActivity {
                 SendMessageToWX.Req req = new SendMessageToWX.Req();
                 req.message = msg;
                 req.scene = SendMessageToWX.Req.WXSceneTimeline;
-                MyApp.api.sendReq(req);
-
+                MyApp.api.sendReq(req);*/
                 break;
         }
     }

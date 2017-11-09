@@ -14,9 +14,9 @@ package com.lnyp.sexybeach.common;
 public class Const {
 
     // APP_ID 替换为你的应用从官方网站申请到的合法appId
-    public static final String APP_ID = "wx0d8de7c189faef53";
+//    public static final String APP_ID = "wx0d8de7c189faef53";
 
-    public static final String BASE_IMG_URL1 = "http://tnfs.tngou.net/image"; //_180x120
+//    public static final String BASE_IMG_URL1 = "http://tnfs.tngou.net/image"; //_180x120
 
     public static final String BASE_IMG_URL2 = "";
 

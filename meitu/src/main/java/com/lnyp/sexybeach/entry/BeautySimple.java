@@ -1,6 +1,7 @@
 package com.lnyp.sexybeach.entry;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by lining on 2015/12/18.
@@ -24,6 +25,16 @@ public class BeautySimple implements Serializable {
     private int galleryclass;
     private int id;
     private String img;
+
+    public BeautyList.PageBean.Content.Picture getPic() {
+        return pic;
+    }
+
+    public void setPic(BeautyList.PageBean.Content.Picture pic) {
+        this.pic = pic;
+    }
+
+    BeautyList.PageBean.Content.Picture pic;
     private int rcount;
     private int size;
     private long time;

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#ffffff"
-                android:fitsSystemWindows="true">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#020202"
+    android:id="@+id/rootView"
+    android:fitsSystemWindows="true">
 
     <RelativeLayout
         android:id="@+id/layoutTitleBar"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:background="@drawable/text_bar_bg">
 
         <ImageView
@@ -17,7 +18,20 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:padding="14dp"
-            android:src="@drawable/img_back"/>
+            android:src="@drawable/img_back" />
+
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@id/imgBack"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="标题标题标题标题标题标题标题标题标题标题标题标题"
+            android:textColor="#f2e3e3"
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/imgShare"
@@ -26,7 +40,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="14dp"
-            android:src="@drawable/img_share"/>
+            android:src="@drawable/img_share"
+            android:visibility="gone" />
 
     </RelativeLayout>
 
@@ -34,33 +49,24 @@
         android:id="@+id/scrollContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/layoutTitleBar">
+        android:layout_below="@id/layoutTitleBar">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text=""
-                android:textColor="#555555"
-                android:textSize="18sp"/>
 
             <FrameLayout
                 android:id="@+id/layoutImgs"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp">
+                android:layout_height="match_parent">
 
                 <com.lnyp.sexybeach.widget.ShowMaxImageView
                     android:id="@+id/imgCover"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/placehoder" />
 
                 <TextView
                     android:id="@+id/textCount"
@@ -71,11 +77,11 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:textColor="#EBEFF2"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp"
+                    android:visibility="gone" />
             </FrameLayout>
         </LinearLayout>
     </ScrollView>
-
 
     <include layout="@layout/layout_common_loading" />
 

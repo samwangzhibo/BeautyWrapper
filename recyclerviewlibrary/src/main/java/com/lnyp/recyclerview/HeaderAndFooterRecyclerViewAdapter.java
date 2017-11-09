@@ -184,6 +184,10 @@ public class HeaderAndFooterRecyclerViewAdapter extends RecyclerView.Adapter<Rec
         return getHeaderViewsCount() + getFooterViewsCount() + mInnerAdapter.getItemCount();
     }
 
+    public void notifyDataChanged(){
+        notifyItemRangeChanged(getHeaderViewsCount(), mInnerAdapter.getItemCount());
+    }
+
     @Override
     public int getItemViewType(int position) {
 

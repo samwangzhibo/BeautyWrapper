@@ -26,14 +26,14 @@ public class BeautyList implements Serializable{
 
     int ret_code;
     PageBean pagebean;
-    public class PageBean{
+    public class PageBean implements Serializable{
         public int allPages;
         public ArrayList<Content> contentlist;
         public int currentPage;
         public int allNum;
         public int maxResult;
 
-        public class Content{
+        public class Content implements Serializable{
             public String typeName;
             public String title;
             public ArrayList<Picture> list;
@@ -41,7 +41,7 @@ public class BeautyList implements Serializable{
             public int type;
             public String ct;
 
-            public class Picture{
+            public class Picture implements Serializable{
                 public String big;
                 public String small;
                 public String middle;

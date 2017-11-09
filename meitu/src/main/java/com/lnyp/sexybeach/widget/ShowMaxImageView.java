@@ -6,12 +6,13 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.lnyp.sexybeach.util.ScreenSizeUtil;
 
-public class ShowMaxImageView extends ImageView {
+import uk.co.senab.photoview.PhotoView;
+
+public class ShowMaxImageView extends PhotoView {
 
     private float mHeight = 0;
 

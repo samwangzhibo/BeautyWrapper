@@ -49,15 +49,14 @@ public class BeautyListAdapter extends RecyclerView.Adapter {
 
         if (beautySimple != null) {
 
-            String imgUrl = Const.BASE_IMG_URL2 + beautySimple.getImg();
+            String imgUrl = Const.BASE_IMG_URL2 + beautySimple.getPic().middle;
 
 //            LogUtils.e(imgUrl);
-
+            viewHolder.imgBeautyGril.setImageResource(R.drawable.placehoder);
             Glide.with(mContext).
                     load(imgUrl)
                     .asBitmap()
-//                    .override(300, 600)
-                    .skipMemoryCache(true)
+                    .skipMemoryCache(false)
                     .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                     .into(viewHolder.imgBeautyGril);
 

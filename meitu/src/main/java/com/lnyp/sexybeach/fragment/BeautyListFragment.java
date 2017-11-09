@@ -8,18 +8,16 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.lnyp.flexibledivider.GridSpacingItemDecoration;
 import com.lnyp.recyclerview.EndlessRecyclerOnScrollListener;
 import com.lnyp.recyclerview.HeaderAndFooterRecyclerViewAdapter;
-import com.lnyp.recyclerview.HeaderSpanSizeLookup;
+import com.lnyp.recyclerview.NullItemAnimator;
 import com.lnyp.recyclerview.RecyclerViewLoadingFooter;
 import com.lnyp.recyclerview.RecyclerViewStateUtils;
 import com.lnyp.sexybeach.R;
@@ -40,7 +38,7 @@ import butterknife.ButterKnife;
 /**
  * 美女列表
  */
-public class FragmentBeautyList extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class BeautyListFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     /**
      * 每一页展示多少条数据
@@ -68,7 +66,7 @@ public class FragmentBeautyList extends BaseFragment implements SwipeRefreshLayo
 
     private boolean isRefresh = false;
 
-    private View view;
+    private boolean isFirstLoad = false;
 
     protected MainActivity mActivity;
 
@@ -85,24 +83,13 @@ public class FragmentBeautyList extends BaseFragment implements SwipeRefreshLayo
             id = getArguments().getInt("id");
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        if (null == view) {
-            view = inflater.inflate(R.layout.fragment_beauty_list, container, false);
-        }
-        ButterKnife.bind(this, view);
-        initView();
-
-        return view;
-    }
-
-    private void initView() {
+    protected void initView() {
+        ButterKnife.bind(this, mRootView);
 
         refreshLayout.setOnRefreshListener(this);
         listViewBeauties.setHasFixedSize(true); // 设置固定大小
         mDatas = new ArrayList<>();
-
+        listViewBeauties.setItemAnimator(new NullItemAnimator());
         BeautyListAdapter beautyListAdapter = new BeautyListAdapter(this, mDatas, onItemClick);
         mAdapter = new HeaderAndFooterRecyclerViewAdapter(beautyListAdapter);
         listViewBeauties.setAdapter(mAdapter);
@@ -124,11 +111,26 @@ public class FragmentBeautyList extends BaseFragment implements SwipeRefreshLayo
     }
 
     @Override
+    int getMainLayout() {
+        return R.layout.fragment_beauty_list;
+    }
+
+    @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser && mAdapter != null){
+        if (isVisibleToUser && mAdapter != null && mAdapter.getInnerAdapter().getItemCount() == 0){
             Log.e("wzb", toString() + " isVisibleToUser : " + isVisibleToUser + " mAdapter : " + mAdapter);
             startLoadData();
+            isFirstLoad = true;
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!isFirstLoad){
+            startLoadData();
+            isFirstLoad = true;
         }
     }
 
@@ -150,7 +152,7 @@ public class FragmentBeautyList extends BaseFragment implements SwipeRefreshLayo
                     List<BeautySimple> tngous = new ArrayList<>();
                     for (BeautyList.PageBean.Content content : contentlist){
                         BeautySimple beautySimple = new BeautySimple();
-                        beautySimple.setImg(content.list.get(0).middle);
+                        beautySimple.setPic(content.list.get(0));
                         beautySimple.setTitle(content.title);
                         tngous.add(beautySimple);
                     }
@@ -195,8 +197,10 @@ public class FragmentBeautyList extends BaseFragment implements SwipeRefreshLayo
     }
 
     private void updateData() {
-        if (mAdapter != null)
-            mAdapter.notifyDataSetChanged();
+        if (mAdapter != null) {
+//            mAdapter.notifyDataSetChanged();
+            mAdapter.notifyDataChanged();
+        }
     }
 
 
@@ -234,13 +238,9 @@ public class FragmentBeautyList extends BaseFragment implements SwipeRefreshLayo
             try {
                 int pos = (int) v.getTag();
                 BeautySimple beautySimple = mDatas.get(pos);
-
                 if (beautySimple != null) {
-                    Intent intent = new Intent(getActivity(), BeautyDetailActivity.class);
-                    intent.putExtra("beautySimple", beautySimple);
-                    startActivity(intent);
+                    startActivity(BeautyDetailActivity.createIntent(getActivity(), beautySimple));
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -251,8 +251,8 @@ public class FragmentBeautyList extends BaseFragment implements SwipeRefreshLayo
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (null != view) {
-            ((ViewGroup) view.getParent()).removeView(view);
+        if (null != mRootView) {
+            ((ViewGroup) mRootView.getParent()).removeView(mRootView);
         }
     }
 

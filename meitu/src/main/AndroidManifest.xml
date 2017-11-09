@@ -20,7 +20,9 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <!-- 可以获取使用Wi-Fi等WLAN无线网络 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
+    <meta-data
+        android:name="com.lnyp.sexybeach.util.GlideConfiguration"
+        android:value="GlideModule"/>
     <application
         android:name=".MyApp"
         android:allowBackup="true"

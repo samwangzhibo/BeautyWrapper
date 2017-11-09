@@ -8,5 +8,6 @@
 
     <!-- 用于项目、活动导航的背景色-->
     <item name="base_tabpager_indicator_unselecte" type="drawable">#EBEFF2</item>
+    <color name="skin_bg_1">#f2f2f2</color>
 
 </resources>
