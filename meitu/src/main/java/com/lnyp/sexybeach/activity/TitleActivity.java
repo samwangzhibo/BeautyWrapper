@@ -43,6 +43,10 @@ public class TitleActivity extends AppCompatActivity {
         titleView = findViewById(R.id.title_bar);
     }
 
+    public void setTitleLineVisible(boolean visible){
+        findViewById(R.id.title_line).setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
     public void setTitleText(String title) {
         TextView textView = ((TextView) findViewById(R.id.title_name));
         textView.setText(title);

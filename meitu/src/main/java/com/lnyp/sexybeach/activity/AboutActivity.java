@@ -19,5 +19,6 @@ public class AboutActivity extends TitleActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         ((TextView)findViewById(R.id.tv_vc_code)).setText("版本号："+ MyApp.getVersionName());
+        setTitleLineVisible(false);
     }
 }

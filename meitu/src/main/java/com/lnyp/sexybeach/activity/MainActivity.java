@@ -2,6 +2,7 @@ package com.lnyp.sexybeach.activity;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import com.lnyp.sexybeach.R;
 import com.lnyp.sexybeach.adapter.ProjectPagerAdapter;
@@ -32,11 +33,21 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+        initView();
         mAdapter = new ProjectPagerAdapter(getSupportFragmentManager());
         viewPagerProjects.setOffscreenPageLimit(1);
         viewPagerProjects.setAdapter(mAdapter);
         tabPageProjects.setViewPager(viewPagerProjects);
         getItem();
+    }
+
+    private void initView() {
+        findViewById(R.id.btn_about).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(AboutActivity.createIntent(MainActivity.this));
+            }
+        });
     }
 
     private void getItem() {
