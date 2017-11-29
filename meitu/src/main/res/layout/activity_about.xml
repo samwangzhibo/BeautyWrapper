@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@color/colorAccent"
+    tools:context="com.lnyp.sexybeach.activity.AboutActivity">
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/head_img"
+    android:layout_marginTop="40dp"
+    />
+    <TextView
+        android:id="@+id/tv_vc_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="版本"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_28"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="联系我们：1171714712@qq.com"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_28"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_28"
+        android:text="本软件免费使用，图片太多，建议wifi下浏览。本软件中所有内容(包括但不限于文字图片)，均来源于互联网，如有侵权，请联系我们删除"
+        />
+</LinearLayout>

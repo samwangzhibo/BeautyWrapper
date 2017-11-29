@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/title_bar"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="@color/colorAccent">
+    <ImageButton
+        android:id="@+id/title_left_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:paddingLeft="18dp"
+        android:paddingRight="25dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/new_common_title_selector_left_button_bg"
+        android:contentDescription="@null"
+        android:background="@null"
+        android:clickable="true"
+        android:onClick="onLeftButtonClicked"/>
+    <FrameLayout android:id="@+id/titleLayout" android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true" android:maxWidth="188dp">
+        <TextView
+            android:id="@+id/title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="#ffffff"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:maxWidth="188dp"
+            android:padding="10dp"
+            tools:text="titlebar"
+            android:textSize="19sp"/>
+    </FrameLayout>
+    <!-- 右侧为按钮 -->
+
+    <!-- 右侧为图片 -->
+    <!-- 右侧倒数第二个图片 -->
+
+    <!-- 右侧为文本 -->
+    <View
+        android:id="@+id/title_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:background="#d8d8d8"/>
+</RelativeLayout>
