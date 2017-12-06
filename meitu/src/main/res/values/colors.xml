@@ -6,6 +6,7 @@
     <color name="white">#FFFFFF</color>
 
     <color name="main_top_title_bg">#000000</color>
+    <color name="pink">#ec5b8c</color>
 
     <!-- 用于项目、活动导航的背景色-->
     <item name="base_tabpager_indicator_unselecte" type="drawable">#ec5b8c</item>

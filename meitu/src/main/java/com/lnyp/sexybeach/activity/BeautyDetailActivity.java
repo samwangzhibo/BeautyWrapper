@@ -1,46 +1,33 @@
 package com.lnyp.sexybeach.activity;
 
+import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.apkfuns.logutils.LogUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
-import com.lnyp.sexybeach.MyApp;
 import com.lnyp.sexybeach.R;
 import com.lnyp.sexybeach.common.Const;
-import com.lnyp.sexybeach.entry.BeautyDetail;
 import com.lnyp.sexybeach.entry.BeautySimple;
-import com.lnyp.sexybeach.util.FastJsonUtil;
-import com.lnyp.sexybeach.util.Util;
 import com.lnyp.sexybeach.widget.ShowMaxImageView;
-import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
-import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
-import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
 import com.victor.loading.rotate.RotateLoading;
 
-import java.io.IOException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
 /**
@@ -48,6 +35,7 @@ import uk.co.senab.photoview.PhotoViewAttacher;
  */
 public class BeautyDetailActivity extends BaseActivity {
 
+    private static final String TAG = "wzb";
     @Bind(R.id.rotateLoading)
     public RotateLoading rotateLoading;
 
@@ -65,6 +53,12 @@ public class BeautyDetailActivity extends BaseActivity {
 
     @Bind(R.id.textTitle)
     public TextView textTitle;
+
+    @Bind(R.id.tv_set_wallpaper)
+    public TextView setWallpaperTv;
+
+    @Bind(R.id.tv_download)
+    public TextView downloadTv;
 
     BeautySimple beautySimple;
 
@@ -155,7 +149,7 @@ public class BeautyDetailActivity extends BaseActivity {
                 .load(imgUrl)
 //                .override(720, 1280)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .skipMemoryCache(true)
+                .skipMemoryCache(false)
                 .into(new GlideDrawableImageViewTarget(imgCover) {
                     @Override
                     public void onResourceReady(GlideDrawable drawable, GlideAnimation anim) {
@@ -178,9 +172,27 @@ public class BeautyDetailActivity extends BaseActivity {
         view.setVisibility(view.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
     }
 
-    @OnClick({R.id.layoutImgs, R.id.imgBack, R.id.imgShare})
+    @OnClick({R.id.layoutImgs, R.id.imgBack, R.id.imgShare, R.id.tv_set_wallpaper, R.id.tv_download})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.tv_download:
+                break;
+            case R.id.tv_set_wallpaper:
+                //设置壁纸
+                try {
+                    WallpaperManager wpm = (WallpaperManager) getSystemService(
+                            Context.WALLPAPER_SERVICE);
+                    if (wpm != null) {
+                        Bitmap bm =((GlideBitmapDrawable) (imgCover).getDrawable()).getBitmap();
+                        wpm.setBitmap(bm);
+                        Toast.makeText(this, "设置成功", Toast.LENGTH_SHORT).show();
+                        Log.i("wzb", "wallpaper not null");
+                    }
+                } catch (Exception e) {
+                    Log.e(TAG, "Failed to set wallpaper: " + e);
+                    Toast.makeText(this, "设置失败，请重试哦，亲", Toast.LENGTH_SHORT).show();
+                }
+                break;
             case R.id.layoutImgs:
               /*  if (beautyDetail != null) {
                     Intent intent = new Intent(this, ImageBrowseActivity.class);

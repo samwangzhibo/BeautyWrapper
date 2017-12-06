@@ -66,4 +66,13 @@
         <item name="android:maxHeight">60dp</item>
     </style>
 
+    <style name="common_circle_btn">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">47dp</item>
+        <item name="android:textColor">@color/common_tv_color</item>
+        <item name="android:textSize">21dp</item>
+        <item name="android:layout_marginTop">13dp</item>
+        <item name="android:background">@drawable/common_circle_btn_shape</item>
+    </style>
 </resources>
