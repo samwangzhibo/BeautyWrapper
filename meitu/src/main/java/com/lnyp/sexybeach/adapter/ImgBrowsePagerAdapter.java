@@ -85,7 +85,7 @@ public class ImgBrowsePagerAdapter extends PagerAdapter {
                 .error(R.drawable.default_empty_bg)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .fitCenter()
-                .skipMemoryCache(true)
+                .skipMemoryCache(false)
                 .into(new GlideDrawableImageViewTarget(img) {
                     @Override
                     public void onResourceReady(GlideDrawable drawable, GlideAnimation anim) {

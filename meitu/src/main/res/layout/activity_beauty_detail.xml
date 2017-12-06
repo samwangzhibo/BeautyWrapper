@@ -91,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="50dp"
         android:layout_marginRight="20dp"
         android:orientation="vertical">
 
@@ -103,6 +103,6 @@
         <TextView
             android:id="@+id/tv_download"
             style="@style/common_circle_btn"
-            android:text="下载" />
+            android:text="保存相册" />
     </LinearLayout>
 </RelativeLayout>

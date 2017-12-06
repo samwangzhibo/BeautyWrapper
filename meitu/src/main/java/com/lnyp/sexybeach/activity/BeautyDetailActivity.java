@@ -1,10 +1,15 @@
 package com.lnyp.sexybeach.activity;
 
+import android.Manifest;
 import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -22,6 +27,7 @@ import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.lnyp.sexybeach.R;
 import com.lnyp.sexybeach.common.Const;
 import com.lnyp.sexybeach.entry.BeautySimple;
+import com.lnyp.sexybeach.util.GrantUtil;
 import com.lnyp.sexybeach.util.ImgUtils;
 import com.lnyp.sexybeach.widget.ShowMaxImageView;
 import com.victor.loading.rotate.RotateLoading;
@@ -66,6 +72,7 @@ public class BeautyDetailActivity extends BaseActivity {
     public LinearLayout menuLl;
 
     BeautySimple beautySimple;
+    GrantUtil grantUtil = new GrantUtil();
 
     public static Intent createIntent(Context context, BeautySimple beautySimple){
         Intent intent = new Intent(context, BeautyDetailActivity.class);
@@ -98,51 +105,6 @@ public class BeautyDetailActivity extends BaseActivity {
             }
         });
     }
-
-   /* private void getBeautyDetail(int id) {
-
-
-        OkHttpClient client = new OkHttpClient();
-
-        String url = "http://www.tngou.net/tnfs/api/show?" + "id=" + id;
-        LogUtils.e(url);
-        final Request request = new Request.Builder()
-                .url(url)
-                .build();
-
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-
-                BeautyDetailActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(BeautyDetailActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
-
-                        rotateLoading.stop();
-                    }
-                });
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-
-                String result = response.body().string();
-
-                beautyDetail = FastJsonUtil.json2T(result, BeautyDetail.class);
-                if (beautyDetail != null) {
-                    BeautyDetailActivity.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            updateData();
-                        }
-                    });
-                }
-            }
-        });
-
-    }*/
 
     /**
      * 更新页面UI
@@ -178,15 +140,37 @@ public class BeautyDetailActivity extends BaseActivity {
         view.setVisibility(view.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == grantUtil.REQUEST_EXTERNAL_STORAGE) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                savePic();
+            } else {
+                Toast.makeText(this, "只有允许了我才能写入图片操作哦~~", Toast.LENGTH_SHORT).show();
+            }
+            return;
+        }
+    }
+
+    private void savePic() {
+        try {
+            Bitmap bm2 =((GlideBitmapDrawable) (imgCover).getDrawable()).getBitmap();
+            ImgUtils.saveImageToGallery(this, bm2, beautySimple.getTitle());
+        }catch (Exception e){
+            Toast.makeText(this, "下载失败，请重试哦，亲", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @OnClick({R.id.layoutImgs, R.id.imgBack, R.id.imgShare, R.id.tv_set_wallpaper, R.id.tv_download})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_download:
-                try {
-                    Bitmap bm2 =((GlideBitmapDrawable) (imgCover).getDrawable()).getBitmap();
-                    ImgUtils.saveImageToGallery(this, bm2, beautySimple.getTitle());
-                }catch (Exception e){
-
+                if (grantUtil.isStoragePermissionGranted(this)) {
+                    savePic();
+                } else {
+                    grantUtil.requestStoragePermissions(this);
                 }
                 break;
             case R.id.tv_set_wallpaper:
@@ -232,4 +216,5 @@ public class BeautyDetailActivity extends BaseActivity {
                 break;
         }
     }
+
 }
