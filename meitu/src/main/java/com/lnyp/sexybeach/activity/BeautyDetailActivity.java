@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.lnyp.sexybeach.R;
 import com.lnyp.sexybeach.common.Const;
 import com.lnyp.sexybeach.entry.BeautySimple;
+import com.lnyp.sexybeach.util.ImgUtils;
 import com.lnyp.sexybeach.widget.ShowMaxImageView;
 import com.victor.loading.rotate.RotateLoading;
 
@@ -60,6 +62,9 @@ public class BeautyDetailActivity extends BaseActivity {
     @Bind(R.id.tv_download)
     public TextView downloadTv;
 
+    @Bind(R.id.ll_menu)
+    public LinearLayout menuLl;
+
     BeautySimple beautySimple;
 
     public static Intent createIntent(Context context, BeautySimple beautySimple){
@@ -89,6 +94,7 @@ public class BeautyDetailActivity extends BaseActivity {
             @Override
             public void onPhotoTap(View view, float x, float y) {
                 toggleVisible(titleBar);
+                toggleVisible(menuLl);
             }
         });
     }
@@ -176,6 +182,12 @@ public class BeautyDetailActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_download:
+                try {
+                    Bitmap bm2 =((GlideBitmapDrawable) (imgCover).getDrawable()).getBitmap();
+                    ImgUtils.saveImageToGallery(this, bm2, beautySimple.getTitle());
+                }catch (Exception e){
+
+                }
                 break;
             case R.id.tv_set_wallpaper:
                 //设置壁纸

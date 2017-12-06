@@ -86,6 +86,7 @@
     <include layout="@layout/layout_common_loading" />
 
     <LinearLayout
+        android:id="@+id/ll_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
