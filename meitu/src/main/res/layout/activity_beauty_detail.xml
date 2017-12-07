@@ -29,7 +29,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
-            android:text="标题标题标题标题标题标题标题标题标题标题标题标题"
+            android:text="我是标题，哈哈哈"
             android:textColor="#f2e3e3"
             android:textSize="18sp" />
 
@@ -44,16 +44,22 @@
             android:visibility="gone" />
 
     </RelativeLayout>
-
-    <ScrollView
+    <FrameLayout
+        android:id="@+id/fy_top"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layoutTitleBar"
+        >
+   <!-- <ScrollView
         android:id="@+id/scrollContent"
+        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/layoutTitleBar">
+        >-->
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
 
@@ -65,8 +71,9 @@
                 <com.lnyp.sexybeach.widget.ShowMaxImageView
                     android:id="@+id/imgCover"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/placehoder" />
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter"
+                    />
 
                 <TextView
                     android:id="@+id/textCount"
@@ -81,8 +88,8 @@
                     android:visibility="gone" />
             </FrameLayout>
         </LinearLayout>
-    </ScrollView>
-
+    <!--</ScrollView>-->
+    </FrameLayout>
     <include layout="@layout/layout_common_loading" />
 
     <LinearLayout
