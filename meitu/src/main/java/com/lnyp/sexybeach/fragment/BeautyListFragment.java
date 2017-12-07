@@ -84,7 +84,7 @@ public class BeautyListFragment extends BaseFragment implements SwipeRefreshLayo
         super.onCreate(savedInstanceState);
         if (getArguments() != null)
             id = getArguments().getInt("id");
-        initPage = PageIndexController.getPageIndex(id);
+        initPage = PageIndexController.getPageIndex(id); //如果没有开启，默认每次都为1
         page = initPage;
         Log.e("wzb", " id =  " + id + " , page = " + page);
     }

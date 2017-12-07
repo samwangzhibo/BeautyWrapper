@@ -18,7 +18,7 @@ public class GlideConfiguration implements GlideModule {
         //设置图片的显示格式ARGB_8888
         builder.setDecodeFormat(DecodeFormat.PREFER_ARGB_8888);
         int maxMemory = (int) Runtime.getRuntime().maxMemory();//获取系统分配给应用的总内存大小
-        int memoryCacheSize = maxMemory / 2;//设置图片内存缓存占用八分之一
+        int memoryCacheSize = maxMemory * 4 / 5;//设置图片内存缓存占用八分之一
         //设置内存缓存大小
         builder.setMemoryCache(new LruResourceCache(memoryCacheSize));
     }
