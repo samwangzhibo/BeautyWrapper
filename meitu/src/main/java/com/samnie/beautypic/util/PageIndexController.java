@@ -1,8 +1,10 @@
 package com.samnie.beautypic.util;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static com.samnie.beautypic.Constant.isOpenPageIndexRecord;
 
@@ -11,15 +13,48 @@ import static com.samnie.beautypic.Constant.isOpenPageIndexRecord;
  */
 
 public class PageIndexController {
+    /**
+     *   4001,1 4002,2
+     */
     public static HashMap<Integer, Integer> pageIndexs;
+
+    public static String SPACE = " ";
+    public static String SPLIT = ",";
 
     public static void init(){
         if (!isOpenPageIndexRecord) return;
-        pageIndexs = PreferenceUtils.getObject(PageIndexPreference.KEY_PAGEINDEX, HashMap.class);
-        if (pageIndexs == null){
-            pageIndexs = new HashMap<>();
+        String sourse = PreferenceUtils.getString(PageIndexPreference.KEY_PAGEINDEX);
+        pageIndexs = parseSourseString(sourse);
+        Log.e("wzb", "PageIndexController.init" + sourse);
+    }
+
+    private static HashMap<Integer, Integer> parseSourseString(String sourse) {
+        HashMap<Integer, Integer> pageIndexs = new HashMap<>();
+        if (!TextUtils.isEmpty(sourse)){
+            for (String indexEntry : sourse.split(SPACE)){
+               String[] kv = indexEntry.split(SPLIT);
+               if (kv != null && kv.length == 2){
+                   try {
+                       pageIndexs.put(Integer.parseInt(kv[0]), Integer.parseInt(kv[1]));
+                   }catch (Exception e){
+                   }
+               }
+            }
         }
-        Log.e("wzb", "PageIndexController.init" + pageIndexs);
+        return pageIndexs;
+    }
+
+    private static String parseSourseString(HashMap<Integer, Integer> pageIndexs) {
+        StringBuilder sourseString = new StringBuilder();
+        for (Map.Entry entry : pageIndexs.entrySet()){
+            sourseString.append(entry.getKey());
+            sourseString.append(SPLIT);
+            sourseString.append(entry.getValue());
+            sourseString.append(SPACE);
+        }
+        if (sourseString.indexOf(SPACE) != -1)
+            sourseString.deleteCharAt(sourseString.lastIndexOf(SPACE));
+        return sourseString.toString();
     }
 
     public static void updatePageIndex(int id, int pageIndex){
@@ -41,7 +76,9 @@ public class PageIndexController {
 
     public static void savePageIndex2Path(){
         if (!isOpenPageIndexRecord) return;
-        PreferenceUtils.setObject(PageIndexPreference.KEY_PAGEINDEX, pageIndexs);
-        Log.e("wzb", "PageIndexController.savePageIndex2Path " + pageIndexs);
+        String result = parseSourseString(pageIndexs);
+        if (!TextUtils.isEmpty(result))
+            PreferenceUtils.setString(PageIndexPreference.KEY_PAGEINDEX, result);
+        Log.e("wzb", "PageIndexController.savePageIndex2Path " + result);
     }
 }

@@ -3,6 +3,7 @@ package com.samnie.beautypic.activity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.Toast;
 
 import com.samnie.beautypic.R;
 import com.samnie.beautypic.adapter.ProjectPagerAdapter;
@@ -25,6 +26,9 @@ public class MainActivity extends BaseActivity {
     public ViewPager viewPagerProjects;
     @Bind(R.id.rotateLoading)
     public RotateLoading rotateLoading;
+
+    long lastClickTime = 0L;
+    int CLICK_DURATION = 1500;
 
     ProjectPagerAdapter mAdapter;
 
@@ -76,5 +80,15 @@ public class MainActivity extends BaseActivity {
     public void finish() {
         super.finish();
         PageIndexController.savePageIndex2Path();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (System.currentTimeMillis() - lastClickTime > CLICK_DURATION){
+            Toast.makeText(this, "再点击一下就退出哦，亲", Toast.LENGTH_SHORT).show();
+        }else {
+            super.onBackPressed();
+        }
+        lastClickTime = System.currentTimeMillis();
     }
 }

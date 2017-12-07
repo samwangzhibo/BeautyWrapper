@@ -1,13 +1,11 @@
 package com.samnie.beautypic.util;
 
-import java.util.HashMap;
-
 /**
  * Created by samwangzhibo on 2017/12/6.
  */
 
 public enum  PageIndexPreference implements PreferenceUtils.DefaultValueInterface {
-    KEY_PAGEINDEX(new HashMap<Integer, Integer>());
+    KEY_PAGEINDEX("");
 
     private Object defaultValue;
     static String namespace;
