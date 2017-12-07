@@ -68,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.lnyp.sexybeach.widget.ShowMaxImageView
+                <com.samnie.beautypic.widget.ShowMaxImageView
                     android:id="@+id/imgCover"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

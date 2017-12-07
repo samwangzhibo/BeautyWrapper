@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lnyp.sexybeach">
+    package="com.samnie.beautypic">
 
     <!-- 网络访问权限Im -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -24,7 +24,7 @@
     <uses-permission android:name = "android.permission.SET_WALLPAPER"/>
 
     <meta-data
-        android:name="com.lnyp.sexybeach.util.GlideConfiguration"
+        android:name="com.samnie.beautypic.util.GlideConfiguration"
         android:value="GlideModule" />
 
     <application
@@ -34,7 +34,7 @@
         android:label="@string/app_name"
         android:theme="@style/no_title">
         <activity
-            android:name=".activity.SplashActivity"
+            android:name="com.samnie.beautypic.activity.SplashActivity"
             android:theme="@style/activitySplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
