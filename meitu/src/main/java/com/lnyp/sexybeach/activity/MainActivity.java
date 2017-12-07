@@ -2,12 +2,14 @@ package com.lnyp.sexybeach.activity;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.SparseArray;
 import android.view.View;
 
 import com.lnyp.sexybeach.R;
 import com.lnyp.sexybeach.adapter.ProjectPagerAdapter;
 import com.lnyp.sexybeach.entry.BeautyItemList;
 import com.lnyp.sexybeach.net.Net;
+import com.lnyp.sexybeach.util.PageIndexController;
 import com.victor.loading.rotate.RotateLoading;
 import com.viewpagerindicator.TabPageIndicator;
 
@@ -69,5 +71,11 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        PageIndexController.savePageIndex2Path();
     }
 }

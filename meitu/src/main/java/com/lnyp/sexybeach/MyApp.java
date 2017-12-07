@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.lnyp.sexybeach.common.Const;
+import com.lnyp.sexybeach.util.PageIndexController;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
@@ -35,6 +36,7 @@ public class MyApp extends Application {
         LogUtils.configAllowLog = true;
         LogUtils.configTagPrefix = "beautywallpaper-";
         initAppInfo();
+        PageIndexController.init();
     }
     @Override
     protected void attachBaseContext(Context base) {

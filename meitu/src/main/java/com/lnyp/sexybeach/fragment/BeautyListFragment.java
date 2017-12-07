@@ -27,6 +27,7 @@ import com.lnyp.sexybeach.adapter.BeautyListAdapter;
 import com.lnyp.sexybeach.entry.BeautyList;
 import com.lnyp.sexybeach.entry.BeautySimple;
 import com.lnyp.sexybeach.net.Net;
+import com.lnyp.sexybeach.util.PageIndexController;
 import com.victor.loading.rotate.RotateLoading;
 
 import java.util.ArrayList;
@@ -60,6 +61,8 @@ public class BeautyListFragment extends BaseFragment implements SwipeRefreshLayo
 
     private int page = 1;
 
+    private int initPage = 1;
+
     private int id;
 
     private boolean hasMore = false;
@@ -81,6 +84,9 @@ public class BeautyListFragment extends BaseFragment implements SwipeRefreshLayo
         super.onCreate(savedInstanceState);
         if (getArguments() != null)
             id = getArguments().getInt("id");
+        initPage = PageIndexController.getPageIndex(id);
+        page = initPage;
+        Log.e("wzb", " id =  " + id + " , page = " + page);
     }
 
     protected void initView() {
@@ -144,6 +150,12 @@ public class BeautyListFragment extends BaseFragment implements SwipeRefreshLayo
      * 获取列表
      */
     private void getBeauties() {
+        if (isRefresh){
+            page = initPage;
+        }else {
+            page++;
+        }
+        Log.e("wzb", "start load data : " + " page= " + page);
         Net.getData(mHandler, "http://route.showapi.com/852-2", BeautyList.class, new Net.INetCallBack<BeautyList>() {
             @Override
             public void onResponse(BeautyList beautyList) {
@@ -159,7 +171,11 @@ public class BeautyListFragment extends BaseFragment implements SwipeRefreshLayo
                     if (tngous != null) {
                         if (isRefresh) {
                             mDatas.clear();
+
                             isRefresh = false;
+                        }else {
+                            if (tngous.size() > 0)
+                                PageIndexController.updatePageIndex(id, page); //有返回并且在下拉时
                         }
 
                         mDatas.addAll(tngous);
@@ -169,7 +185,6 @@ public class BeautyListFragment extends BaseFragment implements SwipeRefreshLayo
                         } else {
                             hasMore = false;
                         }
-                        page++;
                     }
                 }
                     doSuccess();
@@ -259,7 +274,7 @@ public class BeautyListFragment extends BaseFragment implements SwipeRefreshLayo
     @Override
     public void onRefresh() {
         isRefresh = true;
-        page = 1;
+//        page = initPage;
         getBeauties();
     }
 
