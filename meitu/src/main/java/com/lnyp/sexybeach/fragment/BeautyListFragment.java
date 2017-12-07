@@ -9,6 +9,7 @@ import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
@@ -99,7 +100,7 @@ public class BeautyListFragment extends BaseFragment implements SwipeRefreshLayo
         BeautyListAdapter beautyListAdapter = new BeautyListAdapter(this, mDatas, onItemClick);
         mAdapter = new HeaderAndFooterRecyclerViewAdapter(beautyListAdapter);
         listViewBeauties.setAdapter(mAdapter);
-
+        ((SimpleItemAnimator)listViewBeauties.getItemAnimator()).setSupportsChangeAnimations(false);
       /*  GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
         gridLayoutManager.setSpanSizeLookup(new HeaderSpanSizeLookup(listViewBeauties.getAdapter(), gridLayoutManager.getSpanCount()));*/
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
