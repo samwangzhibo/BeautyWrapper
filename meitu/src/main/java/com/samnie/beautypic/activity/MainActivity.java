@@ -13,18 +13,18 @@ import com.samnie.beautypic.util.PageIndexController;
 import com.victor.loading.rotate.RotateLoading;
 import com.viewpagerindicator.TabPageIndicator;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
     public static String ITEM_URL = "https://route.showapi.com/852-1?showapi_appid=48695&showapi_sign=2b0649a68d364e8b87e0309b10095237";
     public static String ITEM_NAME = "美女图片";
 
-    @Bind(R.id.tabPageProjects)
+    @BindView(R.id.tabPageProjects)
     public TabPageIndicator tabPageProjects;
-    @Bind(R.id.viewPagerProjects)
+    @BindView(R.id.viewPagerProjects)
     public ViewPager viewPagerProjects;
-    @Bind(R.id.rotateLoading)
+    @BindView(R.id.rotateLoading)
     public RotateLoading rotateLoading;
 
     long lastClickTime = 0L;

@@ -30,7 +30,7 @@ import com.samnie.beautypic.widget.ShowMaxImageView;
 import com.victor.loading.rotate.RotateLoading;
 
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import uk.co.senab.photoview.PhotoViewAttacher;
@@ -41,34 +41,34 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 public class BeautyDetailActivity extends BaseActivity {
 
     private static final String TAG = "wzb";
-    @Bind(R.id.rotateLoading)
+    @BindView(R.id.rotateLoading)
     public RotateLoading rotateLoading;
 
 /*    @Bind(R.id.scrollContent)
     public ScrollView scrollContent;*/
 
-    @Bind(R.id.fy_top)
+    @BindView(R.id.fy_top)
     public FrameLayout topFy;
 
-    @Bind(R.id.imgCover)
+    @BindView(R.id.imgCover)
     public ShowMaxImageView imgCover;
 
-    @Bind(R.id.layoutTitleBar)
+    @BindView(R.id.layoutTitleBar)
     public RelativeLayout titleBar;
 
-    @Bind(R.id.textCount)
+    @BindView(R.id.textCount)
     public TextView textCount;
 
-    @Bind(R.id.textTitle)
+    @BindView(R.id.textTitle)
     public TextView textTitle;
 
-    @Bind(R.id.tv_set_wallpaper)
+    @BindView(R.id.tv_set_wallpaper)
     public TextView setWallpaperTv;
 
-    @Bind(R.id.tv_download)
+    @BindView(R.id.tv_download)
     public TextView downloadTv;
 
-    @Bind(R.id.ll_menu)
+    @BindView(R.id.ll_menu)
     public LinearLayout menuLl;
 
     BeautySimple beautySimple;

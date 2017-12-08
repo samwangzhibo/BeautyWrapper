@@ -8,7 +8,6 @@ import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SimpleItemAnimator;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
@@ -33,7 +32,7 @@ import com.victor.loading.rotate.RotateLoading;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -46,13 +45,13 @@ public class BeautyListFragment extends BaseFragment implements SwipeRefreshLayo
      */
     private static final int REQUEST_COUNT = 20;
 
-    @Bind(R.id.rotateLoading)
+    @BindView(R.id.rotateLoading)
     public RotateLoading rotateLoading;
 
-    @Bind(R.id.listViewBeauties)
+    @BindView(R.id.listViewBeauties)
     public RecyclerView  listViewBeauties;
 
-    @Bind(R.id.refreshLayout)
+    @BindView(R.id.refreshLayout)
     public SwipeRefreshLayout refreshLayout;
 
     private HeaderAndFooterRecyclerViewAdapter mAdapter;

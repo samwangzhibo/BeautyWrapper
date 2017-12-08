@@ -5,12 +5,13 @@ android {
         beautypic {
             keyAlias 'alias'
             keyPassword 'wzb135689'
-            storeFile file('D:/beautypic.jks')
+            storeFile file('beautypic.jks')
             storePassword 'wzb135689'
         }
     }
     compileSdkVersion 23
-    buildToolsVersion '23.0.3'
+    buildToolsVersion '25.0.2'
+
     defaultConfig {
         applicationId "com.samnie.beautypic"
         minSdkVersion 15
@@ -20,11 +21,14 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            shrinkResources true //打开整理资源有问题
+//            minifyEnabled true
+            multiDexEnabled true
+            signingConfig signingConfigs.beautypic
+            proguardFile 'proguard-rules.pro'
         }
         debug {
-            proguardFile 'D:/zybResearch/BeautyWrapper/meitu/proguard-rules.pro'
+            multiDexEnabled true
             signingConfig signingConfigs.beautypic
         }
     }
@@ -35,15 +39,14 @@ android {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
     }
-    /*productFlavors {
-        debug {
-            proguardFile 'D:/zybResearch/BeautyWrapper/meitu/proguard-rules.pro'
-            signingConfig signingConfigs.beautypic
+    android {
+        lintOptions {
+            checkReleaseBuilds false
+            // Or, if you prefer, you can continue to check for errors in release builds,
+            // but continue the build even when errors are found:
+            abortOnError false
         }
-        release {
-            signingConfig signingConfigs.beautypic
-        }
-    }*/
+    }
 }
 
 dependencies {
@@ -52,12 +55,21 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.inkapplications.viewpageindicator:library:2.4.3'
     compile 'com.apkfuns.logutils:library:1.0.6'
-    compile 'com.jakewharton:butterknife:7.0.1'
+    compile ('com.jakewharton:butterknife:8.8.1'){
+        exclude group: 'com.android.support', module: 'support-compat'
+    }
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+//    compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.commit451:PhotoView:1.2.4'
-    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile ('com.android.support:appcompat-v7:23.1.1'){
+        exclude group: 'com.android.support', module: 'support-compat'
+    }
+
     compile 'com.alibaba:fastjson:1.2.7'
     compile 'com.victor:lib:1.0.4'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.squareup.okhttp3:okhttp:3.4.2'
     compile project(':recyclerviewlibrary')
+
+
 }
