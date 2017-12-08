@@ -1,10 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
-
+    signingConfigs {
+        beautypic {
+            keyAlias 'alias'
+            keyPassword 'wzb135689'
+            storeFile file('D:/beautypic.jks')
+            storePassword 'wzb135689'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion '23.0.3'
-
     defaultConfig {
         applicationId "com.samnie.beautypic"
         minSdkVersion 15
@@ -12,14 +18,16 @@ android {
         versionCode 1
         versionName "1.0"
     }
-
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            proguardFile 'D:/zybResearch/BeautyWrapper/meitu/proguard-rules.pro'
+            signingConfig signingConfigs.beautypic
+        }
     }
-
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
         exclude 'META-INF/NOTICE'
@@ -27,6 +35,15 @@ android {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
     }
+    /*productFlavors {
+        debug {
+            proguardFile 'D:/zybResearch/BeautyWrapper/meitu/proguard-rules.pro'
+            signingConfig signingConfigs.beautypic
+        }
+        release {
+            signingConfig signingConfigs.beautypic
+        }
+    }*/
 }
 
 dependencies {
