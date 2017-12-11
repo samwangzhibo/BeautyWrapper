@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.samnie.beautypic">
+    package="com.samnie.beautypic"
+    android:versionCode="1"
+    android:versionName="1.0.0">
+    >
 
     <!-- 网络访问权限Im -->
     <uses-permission android:name="android.permission.INTERNET" />

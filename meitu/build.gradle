@@ -9,20 +9,19 @@ android {
             storePassword 'wzb135689'
         }
     }
-    compileSdkVersion 23
+    compileSdkVersion 26
     buildToolsVersion '25.0.2'
 
     defaultConfig {
         applicationId "com.samnie.beautypic"
         minSdkVersion 15
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 22
     }
     buildTypes {
         release {
 //            shrinkResources true //打开整理资源有问题
 //            minifyEnabled true
+            zipAlignEnabled true
             multiDexEnabled true
             signingConfig signingConfigs.beautypic
             proguardFile 'proguard-rules.pro'
@@ -61,7 +60,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 //    compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.commit451:PhotoView:1.2.4'
-    compile ('com.android.support:appcompat-v7:23.1.1'){
+    compile ('com.android.support:appcompat-v7:26.1.0'){
         exclude group: 'com.android.support', module: 'support-compat'
     }
 

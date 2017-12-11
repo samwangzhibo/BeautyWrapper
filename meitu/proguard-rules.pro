@@ -37,13 +37,7 @@
 -keep public class * extends android.preference.Preference
 -keep public class com.android.vending.licensing.ILicensingService
 
--keep public class * extends android.view.View {
-    public <init>(android.content.Context);
-    public <init>(android.content.Context, android.util.AttributeSet);
-    public <init>(android.content.Context, android.util.AttributeSet, int);
-    public void set*(...);
-    public void get*(...);
-}
+-keep public class * extends android.view.View
 
 -keepclasseswithmembers class * {
     public <init>(android.content.Context, android.util.AttributeSet);
@@ -71,16 +65,13 @@
     public *;
 }
 
--keepclassmembers class * implements java.io.Serializable {
-    static final long serialVersionUID;
-    private static final java.io.ObjectStreamField[] serialPersistentFields;
-    private void writeObject(java.io.ObjectOutputStream);
-    private void readObject(java.io.ObjectInputStream);
-    java.lang.Object writeReplace();
-    java.lang.Object readResolve();
-}
+-keep class * implements java.io.Serializable
 
 -dontwarn android.support.**
+-keep class android.support.** {*;}
+
+#javabean
+-keep class com.samnie.beautypic.entry.**
 
 #okhttp
 -dontwarn okhttp3.**

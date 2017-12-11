@@ -1,6 +1,4 @@
-package com.samnie.beautypic.rspdata;
-
-import com.samnie.beautypic.entry.BeautySimple;
+package com.samnie.beautypic.entry;
 
 import java.util.List;
 
