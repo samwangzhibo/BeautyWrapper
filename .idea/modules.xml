@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SexyBeach.iml" filepath="$PROJECT_DIR$/SexyBeach.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BeautyWrapper.iml" filepath="$PROJECT_DIR$/BeautyWrapper.iml" />
       <module fileurl="file://$PROJECT_DIR$/meitu/meitu.iml" filepath="$PROJECT_DIR$/meitu/meitu.iml" />
       <module fileurl="file://$PROJECT_DIR$/photoview/photoview.iml" filepath="$PROJECT_DIR$/photoview/photoview.iml" />
       <module fileurl="file://$PROJECT_DIR$/recyclerviewlibrary/recyclerviewlibrary.iml" filepath="$PROJECT_DIR$/recyclerviewlibrary/recyclerviewlibrary.iml" />

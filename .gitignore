@@ -7,3 +7,7 @@
 /build
 /captures
 gradle/wrapper/gradle-wrapper.properties
+.idea/
+meitu/meitu.iml
+photoview/photoview.iml
+recyclerviewlibrary/recyclerviewlibrary.iml
