@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="10dp"
     tools:context="com.samnie.beautypic.test.Main2Activity">
-    <RelativeLayout
+    <com.samnie.beautypic.test.MyViewGroup1
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <com.samnie.beautypic.test.MyViewGroup
@@ -18,6 +18,7 @@
         android:clipChildren="false"
         >
     <com.samnie.beautypic.test.MyView
+        android:id="@+id/myview"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:background="@color/colorPrimary"
@@ -25,5 +26,5 @@
         android:layout_marginTop="10dp"
         />
     </com.samnie.beautypic.test.MyViewGroup>
-</RelativeLayout>
-</RelativeLayout>
+</com.samnie.beautypic.test.MyViewGroup1>
+</FrameLayout>

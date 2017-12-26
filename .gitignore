@@ -1,13 +1,8 @@
 *.iml
 .gradle
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
+/.idea
 .DS_Store
 /build
 /captures
 gradle/wrapper/gradle-wrapper.properties
-.idea/
-meitu/meitu.iml
-photoview/photoview.iml
-recyclerviewlibrary/recyclerviewlibrary.iml

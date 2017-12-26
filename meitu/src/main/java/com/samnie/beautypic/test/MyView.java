@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import static com.samnie.beautypic.test.MyViewGroup.getMotionType;
+
 /**
  * Created by zybang on 2017/12/25.
  */
@@ -35,9 +37,21 @@ public class MyView extends View {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        boolean result = super.onTouchEvent(event);
-        Log.e("wzb", "MyView : onTouchEvent " + result);
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        String motionType = getMotionType(ev);
+        Log.e("wzb", "MyView : dispatchTouchEvent " + " , " + motionType);
+        boolean result = super.dispatchTouchEvent(ev);
         return result;
+//        return true;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        String motionType = getMotionType(ev);
+        Log.e("wzb", "MyView : onTouchEvent " + " , " + motionType);
+//        boolean result = super.onTouchEvent(ev);
+        return false;
+//        return true;
+//        return result;
     }
 }

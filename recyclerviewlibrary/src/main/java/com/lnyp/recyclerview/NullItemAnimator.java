@@ -16,17 +16,8 @@
 package com.lnyp.recyclerview;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-//import android.support.v4.animation.AnimatorCompatHelper;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPropertyAnimatorCompat;
-import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
-import android.support.v7.widget.SimpleItemAnimator;
-import android.view.View;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class NullItemAnimator extends RecyclerView.ItemAnimator {
     @Override
@@ -56,7 +47,6 @@ public class NullItemAnimator extends RecyclerView.ItemAnimator {
 
     @Override
     public void endAnimation(ViewHolder item) {
-
     }
 
     @Override

@@ -11,8 +11,8 @@ import android.view.ViewGroup;
  * Created by zybang on 2017/12/25.
  */
 
-public class MyViewGroup extends ViewGroup {
-    public MyViewGroup(Context context, AttributeSet attrs) {
+public class MyViewGroup1 extends ViewGroup {
+    public MyViewGroup1(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -27,14 +27,13 @@ public class MyViewGroup extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        Log.e("wzb", "MyViewGroup : onLayout " + l + " " + t + " " + r + " " +
+        Log.e("wzb", "MyViewGroup1 : onLayout " + l + " " + t + " " + r + " " +
                 b + " " + changed);
         if (changed)
             for (int i = 0; i < getChildCount(); i++ ){
                 View child = getChildAt(i);
                 child.layout(l, t, l + child.getMeasuredWidth(), t + child.getMeasuredHeight());
-                Log.e("wzb", "MyViewGroup  layoutChild: " + child.getMeasuredWidth() +
-                        "," + child.getMeasuredHeight());
+                Log.e("wzb", "MyViewGroup1  layoutChild: " + child.getMeasuredWidth() + "," + child.getMeasuredHeight());
             }
     }
 
@@ -60,7 +59,7 @@ public class MyViewGroup extends ViewGroup {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         String motionType = getMotionType(ev);
-        Log.e("wzb", "MyViewGroup : dispatchTouchEvent " + " , " + motionType);
+        Log.e("wzb", "MyViewGroup1 : dispatchTouchEvent " + " , " + motionType);
         boolean result = super.dispatchTouchEvent(ev);
         return result;
     }
@@ -68,7 +67,7 @@ public class MyViewGroup extends ViewGroup {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         String motionType = getMotionType(ev);
-        Log.e("wzb", "MyViewGroup : onInterceptTouchEvent "+ " , " + motionType);
+        Log.e("wzb", "MyViewGroup1 : onInterceptTouchEvent "+ " , " + motionType);
         boolean result = super.onInterceptTouchEvent(ev);
         return result;
     }
@@ -76,7 +75,7 @@ public class MyViewGroup extends ViewGroup {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         String motionType = getMotionType(event);
-        Log.e("wzb", "MyViewGroup : onTouchEvent " + " , " + motionType);
+        Log.e("wzb", "MyViewGroup1 : onTouchEvent " + " , " + motionType);
         boolean result = super.onTouchEvent(event);
         return result;
     }
