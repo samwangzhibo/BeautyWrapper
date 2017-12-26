@@ -19,8 +19,8 @@ public class Main2Activity extends Activity implements View.OnTouchListener, Vie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         myview = findViewById(R.id.myview);
-        myview.setOnTouchListener(this);
-        //        myview.setOnClickListener(this);
+//        myview.setOnTouchListener(this); //decorview can dispatch touchevent
+//        myview.setOnClickListener(this);
     }
 
     @Override

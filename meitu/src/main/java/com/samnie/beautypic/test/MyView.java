@@ -10,8 +10,12 @@ import android.view.View;
 
 import static com.samnie.beautypic.test.MyViewGroup.getMotionType;
 
+/**
+ * Created by zybang on 2017/12/25.
+ */
+
 public class MyView extends View {
-    private static final String TAG = "sam_MyView";
+    public static final String TAG = "MyView";
 
     public MyView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -19,7 +23,7 @@ public class MyView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        Log.e(TAG, "onMeasure " + widthMeasureSpec + " " + heightMeasureSpec);
+//        Log.e(TAG, "onMeasure " + widthMeasureSpec + " " + heightMeasureSpec);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
@@ -47,9 +51,10 @@ public class MyView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         String motionType = getMotionType(ev);
-        Log.e(TAG, "onTouchEvent " + " , " + motionType );
-//        boolean result = super.onTouchEvent(ev);
+        Log.e(TAG, "MyView : onTouchEvent " + " , " + motionType);
+        boolean result = super.onTouchEvent(ev);
 //        return false;
-                return false;
+//        return true;
+        return result;
     }
 }

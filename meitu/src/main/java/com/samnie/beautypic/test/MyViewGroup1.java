@@ -12,19 +12,18 @@ import android.view.ViewGroup;
  */
 
 public class MyViewGroup1 extends ViewGroup {
-    private static final String TAG = "sam_MyViewGroup1";
-
+    public static final String TAG = "MyViewGroup1";
     public MyViewGroup1(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        Log.e("wzb", "MyViewGroup1 : onMeasure " + widthMeasureSpec + " , " + heightMeasureSpec);
         for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
             measureChild(child, widthMeasureSpec, heightMeasureSpec);
         }
-        Log.e(TAG, "onMeasure " + widthMeasureSpec + " " + heightMeasureSpec);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
@@ -35,7 +34,7 @@ public class MyViewGroup1 extends ViewGroup {
             for (int i = 0; i < getChildCount(); i++) {
                 View child = getChildAt(i);
                 child.layout(l, t, l + child.getMeasuredWidth(), t + child.getMeasuredHeight());
-                Log.e(TAG, "layoutChild: " + child.getMeasuredWidth() + "," + child.getMeasuredHeight());
+//                Log.e("wzb", "MyViewGroup1  layoutChild: " + child.getMeasuredWidth() + "," + child.getMeasuredHeight());
             }
     }
 
@@ -61,24 +60,25 @@ public class MyViewGroup1 extends ViewGroup {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         String motionType = getMotionType(ev);
-        Log.e(TAG, "dispatchTouchEvent " + " , " + motionType);
-//        boolean result = super.dispatchTouchEvent(ev);
-        return false;
+        Log.e("wzb", "                                  ");
+        Log.e("wzb", "MyViewGroup1 : dispatchTouchEvent " + " , " + motionType);
+        boolean result = super.dispatchTouchEvent(ev);
+        return result;
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         String motionType = getMotionType(ev);
-        Log.e(TAG, "onInterceptTouchEvent " + " , " + motionType);
-//        boolean result = super.onInterceptTouchEvent(ev);
-        return false;
+        Log.e("wzb", "MyViewGroup1 : onInterceptTouchEvent "+ " , " + motionType);
+        boolean result = super.onInterceptTouchEvent(ev);
+        return result;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         String motionType = getMotionType(event);
-        Log.e(TAG, "onTouchEvent " + " , " + motionType);
-//        boolean result = super.onTouchEvent(event);
-        return false;
+        Log.e("wzb", "MyViewGroup1 : onTouchEvent " + " , " + motionType);
+        boolean result = super.onTouchEvent(event);
+        return result;
     }
 }

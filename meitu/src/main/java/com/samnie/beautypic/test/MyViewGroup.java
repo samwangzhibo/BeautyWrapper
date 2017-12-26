@@ -12,7 +12,7 @@ import android.view.ViewGroup;
  */
 
 public class MyViewGroup extends ViewGroup {
-    private static final String TAG = "sam_MyViewGroup";
+    public static final String TAG = "MyViewGroup";
 
     public MyViewGroup(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -20,11 +20,11 @@ public class MyViewGroup extends ViewGroup {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        Log.e("wzb", "MyViewGroup : onMeasure " + widthMeasureSpec + " , " + heightMeasureSpec);
         for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
             measureChild(child, widthMeasureSpec, heightMeasureSpec);
         }
-        Log.e(TAG, "onMeasure " + widthMeasureSpec + " " + heightMeasureSpec);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
@@ -77,8 +77,10 @@ public class MyViewGroup extends ViewGroup {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         String motionType = getMotionType(event);
-        Log.e(TAG, "onTouchEvent " + " , " + motionType );
-//        boolean result = super.onTouchEvent(event);
-        return false;
+        Log.e(TAG, "MyViewGroup : onTouchEvent " + " , " + motionType);
+        boolean result = super.onTouchEvent(event);
+        return result;
+//        return event.getAction() == MotionEvent.ACTION_MOVE;
+//        return true;
     }
 }
