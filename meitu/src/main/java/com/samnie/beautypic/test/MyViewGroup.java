@@ -20,7 +20,7 @@ public class MyViewGroup extends ViewGroup {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        Log.e("wzb", "MyViewGroup : onMeasure " + widthMeasureSpec + " , " + heightMeasureSpec);
+        Log.e(TAG, "onMeasure " + widthMeasureSpec + " , " + heightMeasureSpec);
         for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
             measureChild(child, widthMeasureSpec, heightMeasureSpec);
@@ -62,7 +62,7 @@ public class MyViewGroup extends ViewGroup {
     public boolean dispatchTouchEvent(MotionEvent ev) {
         String motionType = getMotionType(ev);
         Log.e(TAG, "dispatchTouchEvent " + " , " + motionType);
-//        boolean result = super.dispatchTouchEvent(ev);
+        boolean result = super.dispatchTouchEvent(ev);
         return false;
     }
 
@@ -70,14 +70,14 @@ public class MyViewGroup extends ViewGroup {
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         String motionType = getMotionType(ev);
         Log.e(TAG, "onInterceptTouchEvent " + " , " + motionType );
-//        boolean result = super.onInterceptTouchEvent(ev);
+        boolean result = super.onInterceptTouchEvent(ev);
         return false;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         String motionType = getMotionType(event);
-        Log.e(TAG, "MyViewGroup : onTouchEvent " + " , " + motionType);
+        Log.e(TAG, "onTouchEvent " + " , " + motionType);
         boolean result = super.onTouchEvent(event);
         return result;
 //        return event.getAction() == MotionEvent.ACTION_MOVE;

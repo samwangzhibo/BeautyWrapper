@@ -51,7 +51,7 @@ public class MyView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         String motionType = getMotionType(ev);
-        Log.e(TAG, "MyView : onTouchEvent " + " , " + motionType);
+        Log.e(TAG, "onTouchEvent " + " , " + motionType);
         boolean result = super.onTouchEvent(ev);
 //        return false;
 //        return true;
