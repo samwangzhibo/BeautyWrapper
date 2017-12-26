@@ -10,25 +10,24 @@ import android.view.View;
 
 import static com.samnie.beautypic.test.MyViewGroup.getMotionType;
 
-/**
- * Created by zybang on 2017/12/25.
- */
-
 public class MyView extends View {
+    private static final String TAG = "sam_MyView";
+
     public MyView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        Log.e(TAG, "onMeasure " + widthMeasureSpec + " " + heightMeasureSpec);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        Log.e(TAG, "onLayout " + left + " " + top + " " + right + " " + bottom + " " + changed);
         super.onLayout(changed, left, top, right, bottom);
-        Log.e("wzb", "MyView : onLayout " + left + " " + top + " " + right + " " +
-                bottom + " " + changed);
+
     }
 
     @Override
@@ -39,19 +38,18 @@ public class MyView extends View {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         String motionType = getMotionType(ev);
-        Log.e("wzb", "MyView : dispatchTouchEvent " + " , " + motionType);
+        Log.e(TAG, "dispatchTouchEvent " + " , " + motionType );
         boolean result = super.dispatchTouchEvent(ev);
-        return result;
-//        return true;
+        return false;
+        //        return true;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         String motionType = getMotionType(ev);
-        Log.e("wzb", "MyView : onTouchEvent " + " , " + motionType);
+        Log.e(TAG, "onTouchEvent " + " , " + motionType );
 //        boolean result = super.onTouchEvent(ev);
-        return false;
-//        return true;
-//        return result;
+//        return false;
+                return false;
     }
 }
