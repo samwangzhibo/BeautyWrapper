@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by zybang on 2017/12/25.
+ * Created by samwangzhibo on 2017/12/25.
  */
 
 public class MyViewGroup extends ViewGroup {
