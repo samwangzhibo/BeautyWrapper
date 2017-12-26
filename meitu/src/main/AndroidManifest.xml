@@ -24,7 +24,7 @@
     <!-- 可以获取使用Wi-Fi等WLAN无线网络 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 设置壁纸 -->
-    <uses-permission android:name = "android.permission.SET_WALLPAPER"/>
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
 
     <meta-data
         android:name="com.samnie.beautypic.util.GlideConfiguration"
@@ -37,8 +37,8 @@
         android:label="@string/app_name"
         android:theme="@style/no_title">
         <activity
-            android:name="com.samnie.beautypic.activity.SplashActivity"
-            android:theme="@style/activitySplashTheme">
+            android:name=".test.Main2Activity"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -63,7 +63,8 @@
             android:exported="true"
             android:label="@string/app_name"
             android:launchMode="singleTop" />
-        <activity android:name=".activity.AboutActivity"></activity>
+        <activity android:name=".activity.AboutActivity" />
+        <!--<activity android:name=".test.Main2Activity"></activity>-->
     </application>
 
 </manifest>
