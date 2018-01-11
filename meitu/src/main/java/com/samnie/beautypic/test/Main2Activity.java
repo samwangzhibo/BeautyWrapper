@@ -33,4 +33,20 @@ public class Main2Activity extends Activity implements View.OnTouchListener, Vie
         Log.e(TAG, "onTouch " + getMotionType(event));
         return false;
     }
+
+//    @Override
+//    public boolean dispatchTouchEvent(MotionEvent ev) {
+//        Log.e(TAG, "                                  ");
+//        Log.e(TAG, "dispatchTouchEvent " + getMotionType(ev));
+//        return super.dispatchTouchEvent(ev);
+//
+////        return false;
+////        return true;
+//    }
+
+//    @Override
+//    public boolean onTouchEvent(MotionEvent ev) {
+//        Log.e(TAG, "onTouchEvent " + getMotionType(ev));
+//        return super.onTouchEvent(ev);
+//    }
 }

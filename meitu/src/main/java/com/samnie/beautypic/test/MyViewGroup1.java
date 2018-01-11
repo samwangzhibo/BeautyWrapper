@@ -12,7 +12,7 @@ import android.view.ViewGroup;
  */
 
 public class MyViewGroup1 extends ViewGroup {
-    public static final String TAG = "MyViewGroup1";
+    public static final String TAG = "sam_MyViewGroup1";
     public MyViewGroup1(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -62,8 +62,11 @@ public class MyViewGroup1 extends ViewGroup {
         String motionType = getMotionType(ev);
         Log.e(TAG, "                                  ");
         Log.e(TAG, "dispatchTouchEvent " + " , " + motionType);
-        boolean result = super.dispatchTouchEvent(ev);
+        boolean result = super.dispatchTouchEvent(ev); //是否分发下去
         return result;
+
+//        return false;
+//        return true; //是否继续接受事件(move up)
     }
 
     @Override
@@ -72,6 +75,7 @@ public class MyViewGroup1 extends ViewGroup {
         Log.e(TAG, "onInterceptTouchEvent "+ " , " + motionType);
         boolean result = super.onInterceptTouchEvent(ev);
         return result;
+//        return false;
     }
 
     @Override
@@ -80,5 +84,7 @@ public class MyViewGroup1 extends ViewGroup {
         Log.e(TAG, "onTouchEvent " + " , " + motionType);
         boolean result = super.onTouchEvent(event);
         return result;
+
+//        return false;
     }
 }

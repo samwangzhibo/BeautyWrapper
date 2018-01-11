@@ -15,7 +15,7 @@ import static com.samnie.beautypic.test.MyViewGroup.getMotionType;
  */
 
 public class MyView extends View {
-    public static final String TAG = "MyView";
+    public static final String TAG = "sam_MyView";
 
     public MyView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -44,8 +44,10 @@ public class MyView extends View {
         String motionType = getMotionType(ev);
         Log.e(TAG, "dispatchTouchEvent " + " , " + motionType );
         boolean result = super.dispatchTouchEvent(ev);
-        return false;
-        //        return true;
+        return result;
+
+//        return false;
+//        return true;
     }
 
     @Override
@@ -53,8 +55,9 @@ public class MyView extends View {
         String motionType = getMotionType(ev);
         Log.e(TAG, "onTouchEvent " + " , " + motionType);
         boolean result = super.onTouchEvent(ev);
+        return result;
+
 //        return false;
 //        return true;
-        return result;
     }
 }
