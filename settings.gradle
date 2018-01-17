@@ -1,1 +1,1 @@
-include ':meitu', ':recyclerviewlibrary', ':photoview'
+include ':meitu', ':recyclerviewlibrary', ':photoview', ':lib'

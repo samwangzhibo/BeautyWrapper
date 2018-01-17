@@ -8,13 +8,22 @@ public class myClass {
            @Override
            public void run() {
                super.run();
-               AsyncTest.testClassAsync();
+//               a.testClassAsync2();
+//               b.testClassAsync4();
+               a.testClassAsync4();
            }
        }.start();
         new Thread("Thread-1"){
             @Override
             public void run() {
                 super.run();
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+//                a.testClassAsync5();
+//                b.testClassAsync();
                 b.testClassAsync3();
             }
         }.start();
