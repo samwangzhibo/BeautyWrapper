@@ -82,9 +82,11 @@ public class MyViewGroup1 extends ViewGroup {
     public boolean onTouchEvent(MotionEvent event) {
         String motionType = getMotionType(event);
         Log.e(TAG, "onTouchEvent " + " , " + motionType);
-        boolean result = super.onTouchEvent(event);
-        return result;
+//        boolean result = super.onTouchEvent(event);
+//        return result;
 
+        return event.getAction() == MotionEvent.ACTION_MOVE;
 //        return false;
+//        return true;
     }
 }

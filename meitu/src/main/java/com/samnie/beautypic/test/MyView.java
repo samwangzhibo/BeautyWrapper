@@ -54,10 +54,10 @@ public class MyView extends View {
     public boolean onTouchEvent(MotionEvent ev) {
         String motionType = getMotionType(ev);
         Log.e(TAG, "onTouchEvent " + " , " + motionType);
-        boolean result = super.onTouchEvent(ev);
-        return result;
+//        boolean result = super.onTouchEvent(ev);
+//        return result;
 
-//        return false;
+        return false;
 //        return true;
     }
 }

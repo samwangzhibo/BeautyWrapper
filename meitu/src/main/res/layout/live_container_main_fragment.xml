@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.samnie.beautypic.test.view.StickyNavLayoutCopy xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/sl_main_fragment_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@id/id_stickynavlayout_topview"
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:background="#f9f5f5"
+            />
+
+        <LinearLayout
+            android:id="@+id/llyt_live_select_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/line"
+            android:layout_below="@+id/id_stickynavlayout_topview"
+            android:background="#160f0f"
+            >
+
+            <TextView
+                android:id="@+id/text_live_select_class"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                tools:text="高一" />
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:background="#e5e5e5" />
+        </LinearLayout>
+
+
+        <View
+            android:id="@id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@+id/id_stickynavlayout_topview"
+            android:layout_toRightOf="@id/llyt_live_select_class"
+            android:background="#f13a3a"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@id/tabs"
+            android:background="#efefef" />
+
+        <ListView
+            android:id="@id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/line" />
+
+    </com.samnie.beautypic.test.view.StickyNavLayoutCopy>
+</RelativeLayout>

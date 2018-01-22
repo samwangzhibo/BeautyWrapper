@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 public class MyViewGroup extends ViewGroup {
     public static final String TAG = "sam_MyViewGroup";
+    float firstY;
 
     public MyViewGroup(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -73,23 +74,41 @@ public class MyViewGroup extends ViewGroup {
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         String motionType = getMotionType(ev);
         Log.e(TAG, "onInterceptTouchEvent " + " , " + motionType );
+
+        float nowY;
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                firstY = ev.getRawY();
+                break;
+            case MotionEvent.ACTION_MOVE:
+                nowY = ev.getRawY();
+                if (-(nowY - firstY) > 100){  //往上
+                    return false;
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+            case MotionEvent.ACTION_CANCEL:
+                break;
+        }
+
 //        if(ev.getAction()==MotionEvent.ACTION_MOVE)
 //            return true;
-        boolean result = super.onInterceptTouchEvent(ev);
-        return result;
+//        boolean result = super.onInterceptTouchEvent(ev);
+//        return result;
 
-//        return false;
+        return false;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         String motionType = getMotionType(event);
         Log.e(TAG, "onTouchEvent " + " , " + motionType);
-        boolean result = super.onTouchEvent(event);
-        return result;
+//        boolean result = super.onTouchEvent(event);
+//        return result;
 
 //        return event.getAction() == MotionEvent.ACTION_MOVE;
-//        return false;
+        return false;
 //        return true;
     }
 }

@@ -5,8 +5,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import com.samnie.beautypic.R;
+
+import java.util.ArrayList;
 
 import static com.samnie.beautypic.test.MyViewGroup.getMotionType;
 
@@ -17,10 +22,25 @@ public class Main2Activity extends Activity implements View.OnTouchListener, Vie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
-        myview = findViewById(R.id.myview);
+        setContentView(R.layout.live_container_main_fragment);
+        initView();
+
+//        setContentView(R.layout.activity_main2);
+//        myview = findViewById(R.id.myview);
 //        myview.setOnTouchListener(this); //decorview can dispatch touchevent
 //        myview.setOnClickListener(this);
+    }
+
+    private void initView() {
+        int NUM = 100;
+        ArrayList<String> list = new ArrayList<>();
+        for(int i=0;i<NUM;i++){
+            list.add("item" + i);
+        }
+
+        ListView listView = findViewById(R.id.pager);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+        listView.setAdapter(adapter);
     }
 
     @Override
